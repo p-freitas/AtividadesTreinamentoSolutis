@@ -41,18 +41,18 @@ function buscarCep(param) {
 
 //Prática
 fetch = require("node-fetch")
-let pokemonBuscado
-pokemonBuscado = buscarPokemon("pikachu")
-console.log("Pokemon encontrado: " + pokemonBuscado)
 
 function buscarPokemon(param) {
-  let pokemon
-  fetch(`https://pokeapi.co/pokemon/${param}`)
+  let pokemon;
+  fetch(`https://pokeapi.co/api/v2/pokemon/${param}`)
       .then(response => response.json())
       .then(data => {
-        pokemon = data.pokemon
-          console.log("Pokemon encontrado: " + pokemon)
+        pokemon = data.pokemon;
+        console.log("Pokemon encontrado: " + pokemon)
       })
-      .catch(console.error)
+      .catch((e) => {
+        console.log(e);
+      });
   return pokemon
 }
+buscarPokemon('pikachu');
