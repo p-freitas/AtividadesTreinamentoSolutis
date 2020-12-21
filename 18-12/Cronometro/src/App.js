@@ -4,6 +4,7 @@ import Botao from './Botao'
 import LabelRelogio from './LabelRelogio'
 import './App.css';
 import Relogio from './Relogio';
+import Parcial from './Parcial';
 
 class App extends React.Component {
   constructor(props){
@@ -29,8 +30,10 @@ class App extends React.Component {
    }
   
   parcial(){
-    let p = this.state.horas + ":" + this.state.minutos+ ":" + this.state.segundos + ":" + this.state.centesimos + "\n\n"
-    this.state.parcial = this.state.parcial + p
+    let p = <li>{this.state.horas + ":" + this.state.minutos+ ":" + this.state.segundos + ":" + this.state.centesimos + "\n\n"}</li>
+    this.setState({
+      parcial: [...this.state.parcial, p]
+    })
   }
   
   pararTempo(){
@@ -124,7 +127,7 @@ class App extends React.Component {
           <Botao onClick={() => this.pararTempo()} label={this.state.nameStop} />
           <Botao onClick={() => this.parcial()} label={"Pacial"} />
           <LabelRelogio name={this.state.name} />
-          <LabelRelogio name={this.state.parcial} />
+          <Parcial parcial={this.state.parcial} />
         </div>
         
       </div>
