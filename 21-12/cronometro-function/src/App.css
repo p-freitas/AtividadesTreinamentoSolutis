@@ -1,6 +1,6 @@
 div{
   text-align: center;
-  margin: 60px 0;
+  margin: 30px 40px;
 }
 .title_relogio {
   text-decoration: underline;
@@ -10,9 +10,38 @@ div{
   font-size: 2em;
 }
 
+.container{
+  display: inline-flex;
+}
+
+.temporizador > h1{
+  text-decoration: underline;
+}
+
+.temporizador > h2{
+  font-size: 2em;
+  color: blue;
+}
+
+.cronometro > h1{
+  text-decoration: underline;
+}
+
+.cronometro > h2{
+  font-size: 2em;
+  color: gray;
+}
+
+input{
+  width: 30px;
+  font-size: 15px;
+  text-align: center;
+}
+
 ul{
   list-style-type: none;
   color: black;
+
   font-size: 1cm;
   padding: 0;
   color: #a59b9b;

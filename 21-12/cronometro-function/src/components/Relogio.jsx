@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export default function Relogio() {
-
     const [clock, setClock] = useState('')
-
     useEffect(() => {
         const moment = require('moment-timezone')
 

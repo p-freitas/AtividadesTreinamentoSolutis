@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Parcials from './Parcials'
 
 export default function Cronometro() {
-    
     const [centesimos, setCentesimos] = useState(0)
     const [pause, setPause] = useState(true)
     const [partials, setPartials] = useState([])
@@ -12,8 +11,7 @@ export default function Cronometro() {
         if(!pause) {
             interval = setInterval(() => {
               setCentesimos(centesimos => centesimos + 1)
-                    }, 10)
-        }
+                    }, 10) }
         return () => { clearInterval(interval) }
     }, [pause, centesimos])
 
@@ -43,7 +41,7 @@ export default function Cronometro() {
         <>
             <div className="cronometro">
                 <h1>Cronômetro</h1>
-                <h1>{minutos()}:{segundos()}:{centesimos%100}</h1>
+                <h2>{minutos()}:{segundos()}:{centesimos%100}</h2>
                 <button onClick={togglePause}>{ pause ? 'Iniciar' : 'Pausar' }</button>
                 <button onClick={zerar}>Zerar</button>
                 <button onClick={parcial}>Parcial</button>
