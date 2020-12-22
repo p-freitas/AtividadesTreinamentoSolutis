@@ -19,6 +19,9 @@ class App extends React.Component {
       name: "Parciais", 
       parcial: "",
       relogio: '',
+      minutosTemporizador: 5,
+      segundosTemporizador: 0,
+      nameStopTemporizador: 'Iniciar',
     };
   }
    zerarCronometro() {
@@ -41,9 +44,9 @@ class App extends React.Component {
         stop: !this.state.stop 
       })
     if (this.state.stop)
-      this.state.nameStop = "Stop"
+      this.setState.nameStop = "Stop"
     else
-      this.state.nameStop = "Start"
+      this.setState.nameStop = "Start"
   }
 
   incrementar () {
@@ -114,12 +117,54 @@ class App extends React.Component {
       () => this.relogio(), 10)
     this.timer = setInterval(
       () => this.incrementar(), 10)
+
+      
   }
-  
+
+  componentWillUnmount() {
+    clearInterval(this.myInterval)
+  }
+
+  handleMinutesChange = (e) => this.setState({ minutosTemporizador: e.target.value });
+  handleSecondsChange = (e) => this.setState({ segundosTemporizador: e.target.value });
+
+  iniciarTemporizador(){
+    this.myInterval = setInterval(() => {
+      const { segundosTemporizador, minutosTemporizador } = this.state
+      
+      if (segundosTemporizador > 0) {
+        this.setState(({ segundosTemporizador }) => ({
+          segundosTemporizador: segundosTemporizador - 1
+        }))
+      }
+      if (segundosTemporizador === 0) {
+        if (minutosTemporizador === 0) {
+          clearInterval(this.myInterval)
+        } else {
+          this.setState(({ minutosTemporizador }) => ({
+            minutosTemporizador: minutosTemporizador - 1,
+            segundosTemporizador: 59
+          }))
+        }
+      }
+    }, 1000)
+  }
+
   render(){
+    const { minutosTemporizador, segundosTemporizador } = this.state
     return (
       <div>
-        <Relogio relogio={this.state.relogio} />
+        <div className='container'>
+          <Relogio relogio={this.state.relogio} />
+          <div>
+            <h1>Temporizador: { minutosTemporizador }:{ segundosTemporizador }</h1>
+            <input value={this.state.minutosTemporizador} onChange={this.handleMinutesChange} placeholder='MM'/> :
+            <input value={this.state.segundosTemporizador} onChange={this.handleSecondsChange}placeholder='SS'/> <br /><br />
+            <Botao onClick={() => this.iniciarTemporizador()} label={this.state.nameStopTemporizador} />
+          </div>
+        </div>
+        
+
         <div>
           <h1 className='title-cronometro'>Cronômetro</h1>
           <Contador horas={this.state.horas} minutos={this.state.minutos} segundos={this.state.segundos} centesimos={this.state.centesimos}/>
@@ -129,6 +174,8 @@ class App extends React.Component {
           <LabelRelogio name={this.state.name} />
           <Parcial parcial={this.state.parcial} />
         </div>
+
+        
         
       </div>
     );

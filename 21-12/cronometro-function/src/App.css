@@ -1,9 +1,13 @@
 div{
   text-align: center;
-  margin: 30px 40px;
+  margin: 60px 0;
 }
-.title-cronometro{
+.title_relogio {
   text-decoration: underline;
+}
+.tempo{
+  color: red;
+  font-size: 2em;
 }
 
 ul{
@@ -12,6 +16,7 @@ ul{
   font-size: 1cm;
   padding: 0;
   color: #a59b9b;
+  font-size: 0.8cm;
 }
 
 button{
@@ -37,17 +42,6 @@ button{
 	position:relative;
 	top:1px;
 }
-.relogio{
-  color: red;
-}
-.title-relogio{
-  text-decoration: underline;
-}
-
-.parcial{
-  color: #a59b9b;
-  text-decoration: dotted;
-}
 
 .App {
   text-align: center;
@@ -56,10 +50,6 @@ button{
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-.contador{
-  color: black;
-  font-size: 1cm;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -81,16 +71,6 @@ button{
 
 .App-link {
   color: #61dafb;
-}
-
-input{
-  width: 30px;
-  font-size: 20px;
-  text-align: center;
-}
-
-.container{
-  display: inline-flex;
 }
 
 @keyframes App-logo-spin {
