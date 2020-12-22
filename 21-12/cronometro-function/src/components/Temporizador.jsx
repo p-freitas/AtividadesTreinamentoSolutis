@@ -8,16 +8,18 @@ const Temporizador = () => {
   const inputMinutos = useRef(null)
 
   const iniciarTemporizador = () => {
-    setTimeout(() => {
-      if(segundos > 0 ){
-        setSegundos(segundos-1)
-      }
-      if(segundos === 0){
-        setSegundos(59)
-        setMinutos(minutos-1)
-      }
-    }, 1000);
-    limparCampos()
+    if(segundos !== 0 && minutos !== 0){
+      setTimeout(() => {
+        if(segundos > 0 ){
+          setSegundos(segundos-1)
+        }
+        if(segundos === 0){
+          setSegundos(59)
+          setMinutos(minutos-1)
+        }
+      }, 1000);
+      limparCampos()
+    }
   }
 
   const togglePause = () => {
