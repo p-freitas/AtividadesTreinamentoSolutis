@@ -7,19 +7,19 @@ const Temporizador = () => {
   const inputSegundos = useRef(null)
   const inputMinutos = useRef(null)
 
+  console.log(pause);
+
   const iniciarTemporizador = () => {
-    if(segundos !== 0 && minutos !== 0){
-      setTimeout(() => {
-        if(segundos > 0 ){
-          setSegundos(segundos-1)
-        }
-        if(segundos === 0){
-          setSegundos(59)
-          setMinutos(minutos-1)
-        }
-      }, 1000);
-      limparCampos()
-    }
+    setTimeout(() => {
+      if(segundos > 0 ){
+        setSegundos(segundos-1)
+      }
+      if(segundos === 0){
+        setSegundos(59)
+        setMinutos(minutos-1)
+      }
+    }, 1000);
+    limparCampos()
   }
 
   const togglePause = () => {

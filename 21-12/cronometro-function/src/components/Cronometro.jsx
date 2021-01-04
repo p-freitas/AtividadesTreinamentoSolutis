@@ -23,15 +23,13 @@ export default function Cronometro() {
         setCentesimos(0)
         setPartials([])
     }
-
     const minutos = () => {
       return Math.floor(centesimos/6000);
     }
-  
+
     const segundos = () => {
       return Math.floor(centesimos/100 % 60);
     }
-  
     const parcial = () => {
       let p = <li>{minutos() + ":" + segundos() + ":" + centesimos%100 + "\n\n"}</li>
       setPartials(partials => [...partials, p]);

@@ -17,7 +17,7 @@ class App extends React.Component {
       stop: false,
       nameStop: "Stop",
       name: "Parciais", 
-      parcial: "",
+      parcial: [],
       relogio: '',
       minutosTemporizador: 5,
       segundosTemporizador: 0,
@@ -34,9 +34,9 @@ class App extends React.Component {
   
   parcial(){
     let p = <li>{this.state.horas + ":" + this.state.minutos+ ":" + this.state.segundos + ":" + this.state.centesimos + "\n\n"}</li>
-    this.setState({
-      parcial: [...this.state.parcial, p]
-    })
+    this.setState(
+      prev => ({parcial: [...prev.parcial, p]}), () => {sessionStorage.setItem('parciais', JSON.stringify(this.state.parcial))}
+      )
   }
   
   pararTempo(){
@@ -58,7 +58,8 @@ class App extends React.Component {
             this.incrementarSegundo(state);
           }  
           return({ centesimos: state.centesimos +1})
-         })
+         }, () => {sessionStorage.setItem('centesimos', this.state.centesimos)}
+         )
     }
   }
 
@@ -69,7 +70,8 @@ class App extends React.Component {
         this.incrementarMinuto(state);
       } 
       return {segundos: state.segundos +1}
-    })
+    }, () => {sessionStorage.setItem('segundos', this.state.segundos)}
+    )
   };
   
   incrementarMinuto (state) {
@@ -79,7 +81,8 @@ class App extends React.Component {
         this.incrementarHoras(state);
       } 
       return {minutos: state.minutos +1}
-    })
+    }, () => {sessionStorage.setItem('minutos', this.state.minutos)}
+    )
   };
 
   incrementarHoras (state) {
